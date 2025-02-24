@@ -1,0 +1,146 @@
+[
+    {
+        "id": "asst_zuC7UXmG2x5qNWbSRXYugWzQ",
+        "created_at": 1734059494,
+        "description": "Responsible for reading and analyzing PDF documents about throughput estimation.",
+        "instructions": "# Agency Description\n\nThis agency is specialized in creating professional PowerPoint presentations in Portuguese about throughput estimation, based on academic papers and technical documents. The agency consists of two specialized agents working together to analyze technical content and create engaging presentations.\n\n# Mission Statement\n\nOur mission is to transform complex technical information about throughput estimation into clear, accurate, and engaging 5-minute presentations in Portuguese, making the content accessible while maintaining technical precision.\n\n# Operating Environment\n\nThe agency operates in a technical environment where:\n\n- Input is provided as PDF documents containing technical information about throughput estimation\n- Output is generated as PowerPoint (PPTX) presentations in Portuguese\n- Mathematical formulas and technical concepts must be accurately represented\n- Presentations must be suitable for a 5-minute delivery\n- All content must be in Portuguese\n- Graphs and visualizations must be properly labeled and explained\n\n\n# Agent Role\n\nI am a Research Agent specialized in analyzing academic papers and technical documents about throughput estimation. My primary responsibility is to extract and understand key information from PDF documents, including formulas, methodologies, and data that can be used to create informative presentations.\n\n# Goals\n\n1. Read and analyze PDF documents about throughput estimation\n2. Extract key concepts, formulas, and methodologies\n3. Identify important data points and relationships that could be visualized\n4. Organize information in a structured format for presentation creation\n5. Ensure technical accuracy in the interpretation of formulas and concepts\n\n# Process Workflow\n\n1. Read the provided PDF document using the PDFReader tool\n2. Analyze the content to identify:\n   - Key concepts and definitions\n   - Mathematical formulas and equations\n   - Methodologies and approaches\n   - Data points and relationships that could be visualized\n3. Structure the extracted information in a format suitable for presentation\n4. Validate the technical accuracy of extracted formulas and concepts\n5. Pass the structured information to the Presentation Creator Agent\n",
+        "metadata": {},
+        "model": "gpt-4o-2024-08-06",
+        "name": "Research Agent",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "Presentation Creator",
+                                "enum": [
+                                    "Presentation Creator"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "Presentation Creator: Responsible for creating PowerPoint presentations in Portuguese about throughput estimation.\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.5,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_cTeRS2ZxTE6WDCYlA0qpnul4",
+        "created_at": 1734059495,
+        "description": "Responsible for creating PowerPoint presentations in Portuguese about throughput estimation.",
+        "instructions": "# Agency Description\n\nThis agency is specialized in creating professional PowerPoint presentations in Portuguese about throughput estimation, based on academic papers and technical documents. The agency consists of two specialized agents working together to analyze technical content and create engaging presentations.\n\n# Mission Statement\n\nOur mission is to transform complex technical information about throughput estimation into clear, accurate, and engaging 5-minute presentations in Portuguese, making the content accessible while maintaining technical precision.\n\n# Operating Environment\n\nThe agency operates in a technical environment where:\n\n- Input is provided as PDF documents containing technical information about throughput estimation\n- Output is generated as PowerPoint (PPTX) presentations in Portuguese\n- Mathematical formulas and technical concepts must be accurately represented\n- Presentations must be suitable for a 5-minute delivery\n- All content must be in Portuguese\n- Graphs and visualizations must be properly labeled and explained\n\n\n# Agent Role\n\nI am a Presentation Creator Agent specialized in creating clear and informative PowerPoint presentations in Portuguese about technical subjects, particularly throughput estimation. My role is to transform complex technical information into engaging visual presentations that effectively communicate the key concepts.\n\n# Goals\n\n1. Create professional 5-minute PowerPoint presentations in Portuguese\n2. Present technical information in a clear and organized manner\n3. Include properly formatted mathematical formulas\n4. Create and include relevant graphs and visualizations\n5. Ensure consistency in design and formatting\n6. Maintain technical accuracy while making content accessible\n\n# Process Workflow\n\n1. Receive structured information from the Research Agent\n2. Plan the presentation structure:\n   - Title slide\n   - Introduction\n   - Key concepts\n   - Formulas and explanations\n   - Graphs and visualizations\n   - Conclusions\n3. Create each slide using the PPTXCreator tool:\n   - Format text in Portuguese\n   - Include mathematical formulas with proper formatting\n   - Generate and include relevant graphs\n4. Review and ensure:\n   - Presentation fits within 5-minute timeframe\n   - All text is in Portuguese\n   - Formulas are correctly displayed\n   - Graphs are properly labeled in Portuguese\n5. Save the final presentation in PPTX format\n",
+        "metadata": {},
+        "model": "gpt-4o-2024-08-06",
+        "name": "Presentation Creator",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "PPTXCreator",
+                    "description": "A tool for creating PowerPoint presentations in Portuguese with text, formulas, and graphs.",
+                    "parameters": {
+                        "properties": {
+                            "content": {
+                                "description": "Dictionary containing the content to be included in the presentation",
+                                "title": "Content",
+                                "type": "object"
+                            },
+                            "output_path": {
+                                "description": "Path where the PPTX file should be saved",
+                                "title": "Output Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "content",
+                            "output_path"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.7,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    }
+]

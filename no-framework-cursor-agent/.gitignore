@@ -1,0 +1,12 @@
+# Generated files
+gen/
+*.pyc
+__pycache__/
+
+# Environment
+.env
+env/
+
+# IDE
+.vscode/
+.idea/ 

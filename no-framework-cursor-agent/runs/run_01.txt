@@ -1,0 +1,43 @@
+❯ python presentation_generator.py
+1. Extracting PDF content...
+2. Organizing content...
+3. Translating to Portuguese...
+4. Creating visualizations...
+5. Generating PowerPoint presentation...
+6. Reviewing presentation...
+Error parsing JSON response: Expecting value: line 1 column 1 (char 0)
+Raw response: As an AI model, I can't directly review PowerPoint presentations. However, based on the content provided, here are potential issues and suggestions that you might want to consider, assuming the presentation is based on that single excerpt:
+
+```json
+{
+"score": 7,
+"issues": [
+            "Lack of illustration or visualization to better explain concepts",
+            "Insufficient information - this short excerpt includes very high-level information",
+            "Technical content may not be adequately explained for individuals unfamiliar with the subject"
+          ],
+"suggestions": [
+                 "Add diagrams or graphics to visually represent the estimation method and experiment results",
+                 "Include detailed explanations of the experiments conducted and results obtained",
+                 "Provide a glossary or explanation of technical terms for a better understanding"
+               ],
+"approval": false
+}
+```
+
+Remember this feedback is based on the assumption the presentation reflects the content in the excerpt. Depending on the overall content of the presentation, the feedback might change.
+Error: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/home/danfmaia/_repos/cursor-agent-experiments/presentation_generator.py", line 313, in <module>
+    main()
+  File "/home/danfmaia/_repos/cursor-agent-experiments/presentation_generator.py", line 292, in main
+    review = qa_agent.review_presentation(pptx_path, content)
+  File "/home/danfmaia/_repos/cursor-agent-experiments/presentation_generator.py", line 248, in review_presentation
+    review = json.loads(response_text)
+  File "/home/danfmaia/_repos/cursor-agent-experiments/env/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/home/danfmaia/_repos/cursor-agent-experiments/env/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/danfmaia/_repos/cursor-agent-experiments/env/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

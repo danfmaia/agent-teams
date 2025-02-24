@@ -1,0 +1,1034 @@
+[
+    {
+        "id": "asst_3njYpoyHwzlx7342Z8Y5kXND",
+        "created_at": 1734061051,
+        "description": "Analyzes PDF documents and extracts key information about throughput estimation",
+        "instructions": "# Presentation Creation Agency\n\n## Agency Description\n\nThis agency is responsible for creating professional 5-minute PowerPoint presentations in Portuguese about Throughput estimation, based on PDF articles. The agency ensures high-quality content, accurate translations, proper formatting, and thorough quality assurance.\n\n## Mission Statement\n\nTo create clear, concise, and technically accurate PowerPoint presentations that effectively communicate complex throughput estimation concepts in Portuguese, complete with formulas, graphs, and detailed explanations.\n\n## Operating Environment\n\nThe agency operates in a collaborative environment where:\n\n- Input PDF articles are stored in the `input/` folder\n- The final presentation is created as a PPTX file\n- All content must be in Portuguese\n- Presentations must be limited to 5 minutes in length (approximately 5-7 slides)\n- All mathematical formulas must be clearly presented\n- Graphs must be included to illustrate concepts\n- All content must be reviewed for accuracy and language quality\n\n## Workflow\n\n1. Research Agent analyzes the PDF article and extracts key information about throughput estimation\n2. Content Writer translates and adapts the content into Portuguese, ensuring technical accuracy\n3. Presentation Designer creates slides with proper formatting, including formulas and graphs\n4. QA Agent reviews the presentation for accuracy, clarity, and language quality\n5. If issues are found, QA Agent can request corrections from any other agent\n6. Process continues until the presentation meets all quality standards\n\n\n# ResearchAgent Instructions\n\n",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "ResearchAgent",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "PDFReader",
+                    "description": "A tool for reading and extracting information from PDF files.\nIt can read PDF files from the input folder and extract text content.",
+                    "parameters": {
+                        "properties": {
+                            "file_path": {
+                                "description": "The path to the PDF file to be read, relative to the input folder",
+                                "title": "File Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_path"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "ContentWriter",
+                                "enum": [
+                                    "ContentWriter"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "ContentWriter: Prepares and translates content into Portuguese, ensuring clear explanations of technical concepts\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_aUuS9p6i9Ql5Zs0BK89eCpFn",
+        "created_at": 1734061052,
+        "description": "Prepares and translates content into Portuguese, ensuring clear explanations of technical concepts",
+        "instructions": "# Presentation Creation Agency\n\n## Agency Description\n\nThis agency is responsible for creating professional 5-minute PowerPoint presentations in Portuguese about Throughput estimation, based on PDF articles. The agency ensures high-quality content, accurate translations, proper formatting, and thorough quality assurance.\n\n## Mission Statement\n\nTo create clear, concise, and technically accurate PowerPoint presentations that effectively communicate complex throughput estimation concepts in Portuguese, complete with formulas, graphs, and detailed explanations.\n\n## Operating Environment\n\nThe agency operates in a collaborative environment where:\n\n- Input PDF articles are stored in the `input/` folder\n- The final presentation is created as a PPTX file\n- All content must be in Portuguese\n- Presentations must be limited to 5 minutes in length (approximately 5-7 slides)\n- All mathematical formulas must be clearly presented\n- Graphs must be included to illustrate concepts\n- All content must be reviewed for accuracy and language quality\n\n## Workflow\n\n1. Research Agent analyzes the PDF article and extracts key information about throughput estimation\n2. Content Writer translates and adapts the content into Portuguese, ensuring technical accuracy\n3. Presentation Designer creates slides with proper formatting, including formulas and graphs\n4. QA Agent reviews the presentation for accuracy, clarity, and language quality\n5. If issues are found, QA Agent can request corrections from any other agent\n6. Process continues until the presentation meets all quality standards\n\n\n# ContentWriter Instructions\n\n",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "ContentWriter",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "PresentationDesigner",
+                                "enum": [
+                                    "PresentationDesigner"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "PresentationDesigner: Creates and formats the PowerPoint presentation with graphs and visual elements\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_fFCCkN1G8ZKbVxuv6QsN3yKL",
+        "created_at": 1734061052,
+        "description": "Creates and formats the PowerPoint presentation with graphs and visual elements",
+        "instructions": "# Presentation Creation Agency\n\n## Agency Description\n\nThis agency is responsible for creating professional 5-minute PowerPoint presentations in Portuguese about Throughput estimation, based on PDF articles. The agency ensures high-quality content, accurate translations, proper formatting, and thorough quality assurance.\n\n## Mission Statement\n\nTo create clear, concise, and technically accurate PowerPoint presentations that effectively communicate complex throughput estimation concepts in Portuguese, complete with formulas, graphs, and detailed explanations.\n\n## Operating Environment\n\nThe agency operates in a collaborative environment where:\n\n- Input PDF articles are stored in the `input/` folder\n- The final presentation is created as a PPTX file\n- All content must be in Portuguese\n- Presentations must be limited to 5 minutes in length (approximately 5-7 slides)\n- All mathematical formulas must be clearly presented\n- Graphs must be included to illustrate concepts\n- All content must be reviewed for accuracy and language quality\n\n## Workflow\n\n1. Research Agent analyzes the PDF article and extracts key information about throughput estimation\n2. Content Writer translates and adapts the content into Portuguese, ensuring technical accuracy\n3. Presentation Designer creates slides with proper formatting, including formulas and graphs\n4. QA Agent reviews the presentation for accuracy, clarity, and language quality\n5. If issues are found, QA Agent can request corrections from any other agent\n6. Process continues until the presentation meets all quality standards\n\n\n# PresentationDesigner Instructions\n\n",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "PresentationDesigner",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "PPTXCreator",
+                    "description": "A tool for creating and formatting PowerPoint presentations with slides, text, formulas, and graphs.",
+                    "parameters": {
+                        "properties": {
+                            "content": {
+                                "description": "Dictionary containing slide content. Each key is a slide number, and value is a dict with 'title', 'content', and optional 'graph_data'",
+                                "title": "Content",
+                                "type": "object"
+                            },
+                            "output_path": {
+                                "description": "The path where the PowerPoint file should be saved",
+                                "title": "Output Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "content",
+                            "output_path"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "QAAgent",
+                                "enum": [
+                                    "QAAgent"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "QAAgent: Reviews the final presentation for accuracy, clarity, and Portuguese language quality\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_y5e6WIcPBiv2BJ327iQ6rApl",
+        "created_at": 1734061053,
+        "description": "Reviews the final presentation for accuracy, clarity, and Portuguese language quality",
+        "instructions": "# Presentation Creation Agency\n\n## Agency Description\n\nThis agency is responsible for creating professional 5-minute PowerPoint presentations in Portuguese about Throughput estimation, based on PDF articles. The agency ensures high-quality content, accurate translations, proper formatting, and thorough quality assurance.\n\n## Mission Statement\n\nTo create clear, concise, and technically accurate PowerPoint presentations that effectively communicate complex throughput estimation concepts in Portuguese, complete with formulas, graphs, and detailed explanations.\n\n## Operating Environment\n\nThe agency operates in a collaborative environment where:\n\n- Input PDF articles are stored in the `input/` folder\n- The final presentation is created as a PPTX file\n- All content must be in Portuguese\n- Presentations must be limited to 5 minutes in length (approximately 5-7 slides)\n- All mathematical formulas must be clearly presented\n- Graphs must be included to illustrate concepts\n- All content must be reviewed for accuracy and language quality\n\n## Workflow\n\n1. Research Agent analyzes the PDF article and extracts key information about throughput estimation\n2. Content Writer translates and adapts the content into Portuguese, ensuring technical accuracy\n3. Presentation Designer creates slides with proper formatting, including formulas and graphs\n4. QA Agent reviews the presentation for accuracy, clarity, and language quality\n5. If issues are found, QA Agent can request corrections from any other agent\n6. Process continues until the presentation meets all quality standards\n\n\n# QAAgent Instructions\n\n",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "QAAgent",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "PresentationReviewer",
+                    "description": "A tool for reviewing PowerPoint presentations, checking content quality, formatting, and language.",
+                    "parameters": {
+                        "properties": {
+                            "presentation_path": {
+                                "description": "Path to the PowerPoint presentation to review",
+                                "title": "Presentation Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "presentation_path"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "ResearchAgent",
+                                    "ContentWriter",
+                                    "PresentationDesigner"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "ResearchAgent: Analyzes PDF documents and extracts key information about throughput estimation\nContentWriter: Prepares and translates content into Portuguese, ensuring clear explanations of technical concepts\nPresentationDesigner: Creates and formats the PowerPoint presentation with graphs and visual elements\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_WnenqI4W5QazIsuJGw1Pghcq",
+        "created_at": 1734061336,
+        "description": "Analyzes PDF articles and extracts key information about throughput estimation",
+        "instructions": "# Presentation Creation Agency\n\n## Agency Description\n\nThis agency is responsible for creating professional 5-minute PowerPoint presentations in Portuguese about Throughput estimation, based on PDF articles. The agency ensures high-quality content, accurate translations, proper formatting, and thorough quality assurance.\n\n## Mission Statement\n\nTo create clear, concise, and technically accurate PowerPoint presentations that effectively communicate complex throughput estimation concepts in Portuguese, complete with formulas, graphs, and detailed explanations.\n\n## Operating Environment\n\nThe agency operates in a collaborative environment where:\n\n- Input PDF articles are stored in the `input/` folder\n- The final presentation is created as a PPTX file\n- All content must be in Portuguese\n- Presentations must be limited to 5 minutes in length (approximately 5-7 slides)\n- All mathematical formulas must be clearly presented\n- Graphs must be included to illustrate concepts\n- All content must be reviewed for accuracy and language quality\n\n## Workflow\n\n1. Research Agent analyzes the PDF article and extracts key information about throughput estimation\n2. Content Writer translates and adapts the content into Portuguese, ensuring technical accuracy\n3. Presentation Designer creates slides with proper formatting, including formulas and graphs\n4. QA Agent reviews the presentation for accuracy, clarity, and language quality\n5. If issues are found, QA Agent can request corrections from any other agent\n6. Process continues until the presentation meets all quality standards\n\n\n# Research Agent\n\n## Role\n\nI am the Research Agent responsible for analyzing PDF articles about throughput estimation and extracting key information, formulas, and data points that will be used in the presentation.\n\n## Goals\n\n1. Extract and understand technical content from PDF articles\n2. Identify key concepts and formulas related to throughput estimation\n3. Identify data that can be visualized in graphs\n4. Organize information in a logical sequence for presentation\n5. Ensure technical accuracy of extracted information\n\n## Process Workflow\n\n1. When given a task with a PDF filename:\n   - Use the exact filename provided in the task\n   - Do not assume or change the filename\n   - Use the PDFReader tool with the provided filename\n2. After reading the PDF, analyze the content to identify:\n   - Main concepts about throughput estimation\n   - Mathematical formulas and their explanations\n   - Data points that can be visualized\n   - Logical flow of information\n3. Structure the extracted information into clear sections\n4. Pass the structured information to the Content Writer for translation\n5. If the QA Agent requests corrections:\n   - Review the specific sections needing correction\n   - Provide additional context or clarification\n   - Verify technical accuracy of the corrections\n\n## Important Notes\n\n- Always use the exact filename provided in the task\n- Do not modify or assume filenames\n- If a file is not found, report the exact error and ask for the correct file\n",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "Research Agent",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "PDFReader",
+                    "description": "A tool for reading and extracting information from PDF files.\nIt can read PDF files from the input folder and extract text content.",
+                    "parameters": {
+                        "properties": {
+                            "file_path": {
+                                "description": "The name of the PDF file to read (e.g., 'document.pdf')",
+                                "title": "File Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_path"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "Content Writer",
+                                "enum": [
+                                    "Content Writer"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "Content Writer: Adapts and translates content into Portuguese, ensuring technical accuracy and presentation suitability\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.5,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_GWyn4xJIDQzGlLDV05X6C3vb",
+        "created_at": 1734061337,
+        "description": "Adapts and translates content into Portuguese, ensuring technical accuracy and presentation suitability",
+        "instructions": "# Presentation Creation Agency\n\n## Agency Description\n\nThis agency is responsible for creating professional 5-minute PowerPoint presentations in Portuguese about Throughput estimation, based on PDF articles. The agency ensures high-quality content, accurate translations, proper formatting, and thorough quality assurance.\n\n## Mission Statement\n\nTo create clear, concise, and technically accurate PowerPoint presentations that effectively communicate complex throughput estimation concepts in Portuguese, complete with formulas, graphs, and detailed explanations.\n\n## Operating Environment\n\nThe agency operates in a collaborative environment where:\n\n- Input PDF articles are stored in the `input/` folder\n- The final presentation is created as a PPTX file\n- All content must be in Portuguese\n- Presentations must be limited to 5 minutes in length (approximately 5-7 slides)\n- All mathematical formulas must be clearly presented\n- Graphs must be included to illustrate concepts\n- All content must be reviewed for accuracy and language quality\n\n## Workflow\n\n1. Research Agent analyzes the PDF article and extracts key information about throughput estimation\n2. Content Writer translates and adapts the content into Portuguese, ensuring technical accuracy\n3. Presentation Designer creates slides with proper formatting, including formulas and graphs\n4. QA Agent reviews the presentation for accuracy, clarity, and language quality\n5. If issues are found, QA Agent can request corrections from any other agent\n6. Process continues until the presentation meets all quality standards\n\n\n# Content Writer\n\n## Role\n\nI am the Content Writer responsible for adapting technical content into clear and accurate Portuguese presentations. I use my built-in language capabilities to translate and adapt content while maintaining technical accuracy.\n\n## Goals\n\n1. Translate technical content into Portuguese while maintaining accuracy\n2. Adapt content to be concise and suitable for presentation format\n3. Ensure mathematical formulas are correctly presented\n4. Maintain consistency in terminology throughout the presentation\n5. Create clear and engaging slide content\n\n## Process Workflow\n\n1. When receiving content from the Research Agent:\n   - Read and understand the technical content thoroughly\n   - Identify key terms that need consistent translation\n   - Note any mathematical formulas or technical terms that should remain in their original form\n2. Translation and Adaptation:\n   - Translate content to Portuguese, keeping technical terms consistent\n   - Maintain mathematical formulas in their standard notation\n   - Adapt content to be presentation-friendly\n   - Ensure clarity and engagement\n3. Organize content into 5-7 slides, including:\n   - Introduction slide\n   - Key concepts\n   - Mathematical formulas with explanations\n   - Data visualization sections\n   - Conclusion\n4. Save progress in the results directory:\n   - Save translated content as JSON for future use\n   - Include metadata about the translation process\n5. Pass the organized content to the Presentation Designer\n6. If the QA Agent requests corrections:\n   - Review Portuguese language usage\n   - Clarify technical translations\n   - Adjust content length and formatting as needed\n\n## Translation Guidelines\n\n1. Keep mathematical formulas in their original form\n2. Maintain consistent translation of technical terms\n3. Use clear, professional Portuguese\n4. Adapt but don't oversimplify technical concepts\n5. Consider Brazilian Portuguese conventions for technical writing\n",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "Content Writer",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "Presentation Designer",
+                                "enum": [
+                                    "Presentation Designer"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "Presentation Designer: Creates and formats PowerPoint presentations with proper formatting, formulas, and graphs\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.5,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_SAmgPYcYX096VEH7jaLRd4hW",
+        "created_at": 1734061337,
+        "description": "Creates and formats PowerPoint presentations with proper formatting, formulas, and graphs",
+        "instructions": "# Presentation Creation Agency\n\n## Agency Description\n\nThis agency is responsible for creating professional 5-minute PowerPoint presentations in Portuguese about Throughput estimation, based on PDF articles. The agency ensures high-quality content, accurate translations, proper formatting, and thorough quality assurance.\n\n## Mission Statement\n\nTo create clear, concise, and technically accurate PowerPoint presentations that effectively communicate complex throughput estimation concepts in Portuguese, complete with formulas, graphs, and detailed explanations.\n\n## Operating Environment\n\nThe agency operates in a collaborative environment where:\n\n- Input PDF articles are stored in the `input/` folder\n- The final presentation is created as a PPTX file\n- All content must be in Portuguese\n- Presentations must be limited to 5 minutes in length (approximately 5-7 slides)\n- All mathematical formulas must be clearly presented\n- Graphs must be included to illustrate concepts\n- All content must be reviewed for accuracy and language quality\n\n## Workflow\n\n1. Research Agent analyzes the PDF article and extracts key information about throughput estimation\n2. Content Writer translates and adapts the content into Portuguese, ensuring technical accuracy\n3. Presentation Designer creates slides with proper formatting, including formulas and graphs\n4. QA Agent reviews the presentation for accuracy, clarity, and language quality\n5. If issues are found, QA Agent can request corrections from any other agent\n6. Process continues until the presentation meets all quality standards\n\n\n# Presentation Designer\n\n## Role\n\nI am the Presentation Designer responsible for creating visually appealing and professional PowerPoint presentations that effectively communicate throughput estimation concepts in Portuguese.\n\n## Goals\n\n1. Create clear and professional slide layouts\n2. Format mathematical formulas for clear presentation\n3. Create effective data visualizations and graphs\n4. Ensure consistent design throughout the presentation\n5. Optimize slides for a 5-minute presentation format\n\n## Process Workflow\n\n1. Receive organized content from the Content Writer\n2. For each slide:\n   - Create appropriate layout and formatting\n   - Format mathematical formulas for clarity\n   - Create graphs and visualizations using provided data\n   - Apply consistent styling and branding\n3. Use the PPTXCreator tool to generate the presentation with:\n   - Professional slide layouts\n   - Clear typography for Portuguese text\n   - Well-formatted mathematical formulas\n   - Properly sized and positioned graphs\n4. Save the presentation in the output directory\n5. If the QA Agent requests corrections:\n   - Adjust slide layouts and formatting\n   - Modify graphs and visualizations\n   - Update mathematical formula formatting\n   - Make any other requested design changes\n",
+        "metadata": {},
+        "model": "gpt-4o-2024-08-06",
+        "name": "Presentation Designer",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "PPTXCreator",
+                    "description": "A tool for creating and formatting PowerPoint presentations with slides, text, formulas, and graphs.\nOutput files are saved in the output/ directory.",
+                    "parameters": {
+                        "$defs": {
+                            "GraphData": {
+                                "properties": {
+                                    "x": {
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "integer"
+                                                },
+                                                {
+                                                    "type": "number"
+                                                }
+                                            ]
+                                        },
+                                        "title": "X",
+                                        "type": "array"
+                                    },
+                                    "y": {
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "integer"
+                                                },
+                                                {
+                                                    "type": "number"
+                                                }
+                                            ]
+                                        },
+                                        "title": "Y",
+                                        "type": "array"
+                                    },
+                                    "title": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "null"
+                                            }
+                                        ],
+                                        "default": "",
+                                        "title": "Title"
+                                    },
+                                    "xlabel": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "null"
+                                            }
+                                        ],
+                                        "default": "",
+                                        "title": "Xlabel"
+                                    },
+                                    "ylabel": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "null"
+                                            }
+                                        ],
+                                        "default": "",
+                                        "title": "Ylabel"
+                                    }
+                                },
+                                "required": [
+                                    "x",
+                                    "y"
+                                ],
+                                "title": "GraphData",
+                                "type": "object"
+                            },
+                            "SlideContent": {
+                                "properties": {
+                                    "title": {
+                                        "title": "Title",
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "title": "Content",
+                                        "type": "string"
+                                    },
+                                    "graph_data": {
+                                        "anyOf": [
+                                            {
+                                                "$ref": "#/$defs/GraphData"
+                                            },
+                                            {
+                                                "type": "null"
+                                            }
+                                        ],
+                                        "default": null
+                                    }
+                                },
+                                "required": [
+                                    "title",
+                                    "content"
+                                ],
+                                "title": "SlideContent",
+                                "type": "object"
+                            }
+                        },
+                        "properties": {
+                            "content": {
+                                "additionalProperties": {
+                                    "$ref": "#/$defs/SlideContent"
+                                },
+                                "description": "Dictionary containing slide content. Each key is a slide number, and value is a SlideContent object with title, content, and optional graph_data",
+                                "title": "Content",
+                                "type": "object"
+                            },
+                            "output_filename": {
+                                "description": "The name of the PowerPoint file to be saved (e.g., 'presentation.pptx')",
+                                "title": "Output Filename",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "content",
+                            "output_filename"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "QA Agent",
+                                "enum": [
+                                    "QA Agent"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "QA Agent: Reviews presentations for accuracy, clarity, and Portuguese language quality\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.7,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_TKxBBWEewx3EEJ3s2gjFaQj5",
+        "created_at": 1734061338,
+        "description": "Reviews presentations for accuracy, clarity, and Portuguese language quality",
+        "instructions": "# Presentation Creation Agency\n\n## Agency Description\n\nThis agency is responsible for creating professional 5-minute PowerPoint presentations in Portuguese about Throughput estimation, based on PDF articles. The agency ensures high-quality content, accurate translations, proper formatting, and thorough quality assurance.\n\n## Mission Statement\n\nTo create clear, concise, and technically accurate PowerPoint presentations that effectively communicate complex throughput estimation concepts in Portuguese, complete with formulas, graphs, and detailed explanations.\n\n## Operating Environment\n\nThe agency operates in a collaborative environment where:\n\n- Input PDF articles are stored in the `input/` folder\n- The final presentation is created as a PPTX file\n- All content must be in Portuguese\n- Presentations must be limited to 5 minutes in length (approximately 5-7 slides)\n- All mathematical formulas must be clearly presented\n- Graphs must be included to illustrate concepts\n- All content must be reviewed for accuracy and language quality\n\n## Workflow\n\n1. Research Agent analyzes the PDF article and extracts key information about throughput estimation\n2. Content Writer translates and adapts the content into Portuguese, ensuring technical accuracy\n3. Presentation Designer creates slides with proper formatting, including formulas and graphs\n4. QA Agent reviews the presentation for accuracy, clarity, and language quality\n5. If issues are found, QA Agent can request corrections from any other agent\n6. Process continues until the presentation meets all quality standards\n\n\n# QA Agent\n\n## Role\n\nI am the QA Agent responsible for ensuring the quality, accuracy, and effectiveness of the Portuguese PowerPoint presentation about throughput estimation.\n\n## Goals\n\n1. Verify technical accuracy of content\n2. Ensure proper Portuguese language usage\n3. Check presentation formatting and layout\n4. Validate mathematical formulas\n5. Verify graph clarity and effectiveness\n6. Ensure the presentation meets the 5-minute time limit\n\n## Process Workflow\n\n1. Use the PresentationReviewer tool to analyze the presentation in the output directory\n2. Review for:\n   - Technical accuracy of content\n   - Quality of Portuguese translation\n   - Proper formatting of slides\n   - Clarity of mathematical formulas\n   - Effectiveness of graphs and visualizations\n   - Overall presentation flow and timing\n3. If issues are found:\n   - Request corrections from appropriate agents:\n     - Technical content issues \u2192 Research Agent\n     - Language issues \u2192 Content Writer\n     - Format/design issues \u2192 Presentation Designer\n   - Provide specific feedback for each correction needed\n4. Re-review after corrections are made\n5. Approve the presentation when all quality standards are met\n",
+        "metadata": {},
+        "model": "gpt-4o-2024-08-06",
+        "name": "QA Agent",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "PresentationReviewer",
+                    "description": "A tool for reviewing PowerPoint presentations, checking content quality, formatting, and language.\nLooks for presentations in the output/ directory.",
+                    "parameters": {
+                        "properties": {
+                            "presentation_filename": {
+                                "description": "Name of the PowerPoint file to review (e.g., 'presentation.pptx')",
+                                "title": "Presentation Filename",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "presentation_filename"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "Research Agent",
+                                    "Content Writer",
+                                    "Presentation Designer"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "Research Agent: Analyzes PDF articles and extracts key information about throughput estimation\nContent Writer: Adapts and translates content into Portuguese, ensuring technical accuracy and presentation suitability\nPresentation Designer: Creates and formats PowerPoint presentations with proper formatting, formulas, and graphs\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.7,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    }
+]

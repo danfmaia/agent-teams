@@ -1,0 +1,8 @@
+{
+  "timestamp": "2024-12-13T01:47:21.455770",
+  "agent": "agency",
+  "stage": "error",
+  "data": {
+    "error": "'PresentationAgency' object has no attribute 'process_message'"
+  }
+}

@@ -1,0 +1,98 @@
+We are building a dynamic AI agent application in Streamlit with crewAI. Use the following Python libraries and versions:
+
+crewai==0.16.2
+anthropic==0.38.0
+pandas==2.2.3
+firecrawl==1.4.0
+pillow==10.4.0
+streamlit==1.39.0
+duckduckgo-search==4.5.0
+
+If you are not sure about the libraries, ask the user.
+
+The Streamlit app should be easy to use, allowing users to:
+
+1. Define custom agents with specific roles, goals, and tools
+2. Create ad hoc tasks for the agents
+3. Visualize the crew workflow and agent interactions
+4. Monitor the agents' progress and outputs in real-time
+
+## Key Architectural Principles
+
+- **Dynamic Agent Creation**: Enable users to create custom agents with specific roles, expertise levels, and tool access based on the task requirements.
+- **Flexible Task Definition**: Allow users to define tasks in natural language, which will be automatically parsed and assigned to appropriate agents.
+- **Intelligent Team Assembly**: Automatically suggest and assemble the most suitable agent team (crew) based on the task requirements.
+- **Real-time Monitoring**: Provide clear visibility into the agents' activities, progress, and outputs through the Streamlit interface.
+
+## Implementation Guidelines
+
+- **Agent Configuration**:
+
+  - Each agent should have clearly defined:
+    - Role and expertise areas
+    - Specific goals and objectives
+    - Available tools and capabilities
+    - Interaction permissions with other agents
+  - Use Claude 3-5 Sonnet (claude-3-5-sonnet-2041022) for all agents
+
+- **Task Management**:
+
+  - Parse natural language task descriptions
+  - Break down complex tasks into subtasks
+  - Assign tasks to the most suitable agents
+  - Track task dependencies and progress
+
+- **Tool Integration**:
+  - DuckDuckGo for web search
+  - Firecrawl for web scraping (both text and visual content)
+  - Custom tools based on task requirements
+
+## Best Practices
+
+- **Agent Communication**:
+
+  - Implement clear protocols for inter-agent communication
+  - Maintain context across agent interactions
+  - Enable knowledge sharing between agents
+
+- **Error Handling**:
+
+  - Implement robust error handling for agent operations
+  - Provide clear feedback on failures
+  - Enable graceful recovery from errors
+
+- **Security**:
+  - Implement proper authentication for sensitive operations
+  - Sanitize user inputs
+  - Handle API keys and credentials securely
+
+For Firecrawl integration with Claude agents, use:
+
+```python
+"messages": [
+    HumanMessage(content=[
+        {"type": "text", "text": "<custom prompt for the agent specific to the task>"},
+        {"type": "image_url", "image_url": {"url": f"data:image/{screenshot_image_format};base64,{screenshot_data}"}},
+    ])
+],
+```
+
+Where screenshot_image_format and screenshot_data come from Firecrawl's screenshot capture.
+
+The project structure should follow:
+
+```
+src/
+  ├── agents/
+  │   ├── agent_factory.py    # Dynamic agent creation
+  │   └── agent_templates.py  # Pre-defined agent templates
+  ├── tasks/
+  │   ├── task_factory.py     # Task creation and management
+  │   └── task_parser.py      # Natural language task parsing
+  ├── tools/
+  │   ├── search_tools.py     # Web search capabilities
+  │   └── scraping_tools.py   # Web scraping utilities
+  └── app.py                  # Main Streamlit application
+```
+
+If you need to use a library that is not in the requirements.txt file, ask the user if you are allowed to install it.

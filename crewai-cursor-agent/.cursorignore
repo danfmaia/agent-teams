@@ -1,0 +1,45 @@
+# Build and distribution
+dist/
+lib/
+*.egg-info/
+
+# Cache and temporary files
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.cache/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment and IDE
+.env
+.venv/
+.idea/
+.vscode/
+
+# Database and state files
+*.sqlite3
+*.db
+*.pkl
+db/
+
+# Temporary and output files
+temp/
+crew_tasks_output.json
+assets/
+
+# Version control
+.git/
+
+# Lock files
+*.lock
+
+# Keep these visible for development context:
+# - src/
+# - docs/
+# - tests/
+# - README.md
+# - pyproject.toml
+# - mkdocs.yml 

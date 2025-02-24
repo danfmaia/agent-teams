@@ -1,0 +1,46 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="langgraph_cursor_agent",
+    version="0.1.0",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    install_requires=[
+        "langchain==0.3.7",
+        "langchain-anthropic==0.2.4",
+        "langgraph>=0.2.59,<0.3.0",
+        "anthropic>=0.30.0,<1.0.0",
+        "pandas==2.2.3",
+        "firecrawl==1.4.0",
+        "pillow==10.4.0",
+        "streamlit==1.39.0",
+        "python-pptx==0.6.23",
+        "PyPDF2==3.0.1",
+        "matplotlib==3.8.3",
+        "setuptools>=69.0.3",
+        "wheel>=0.42.0",
+        "python-dotenv>=1.0.0",
+    ],
+    extras_require={
+        "dev": [
+            "pytest==8.0.0",
+            "black==24.1.1",
+            "flake8==7.0.0",
+            "mypy==1.8.0",
+            "isort==5.13.2",
+            "pytest-asyncio==0.23.5",
+            "pytest-cov==4.1.0",
+        ],
+    },
+    python_requires=">=3.10",
+    author="Your Name",
+    author_email="your.email@example.com",
+    description="A LangGraph-based agent system for generating presentations",
+    long_description=open("README.md", encoding="utf-8").read(),
+    long_description_content_type="text/markdown",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Developers",
+        "Programming Language :: Python :: 3.10",
+    ],
+)

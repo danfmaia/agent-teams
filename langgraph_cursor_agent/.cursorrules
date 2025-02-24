@@ -1,0 +1,61 @@
+We are building an AI agent application in Streamlit with LangChain and LangGraph. Use the following Python libraries and versions:
+
+langchain==0.3.7
+langchain-anthropic==0.2.4
+langgraph==0.2.44
+anthropic==0.38.0
+pandas==2.2.3
+firecrawl==1.4.0
+pillow==10.4.0
+streamlit==1.39.0
+
+If you are not sure about the libraries, ask the user.
+
+The Streamlit app should be easy to use, and show the LangGraph workflow in the sidebar. While the agents are running, the screen should show the output of the LangChain agents.
+
+Follow the latest best practices for designing and writing the LangChain agents and the LangGraph multi-agent system:
+
+## Key Architectural Principles
+
+- **Modularity**: Design systems with modular architectures to facilitate the integration of diverse agents with specific capabilities. This allows for easy updates and maintenance without disrupting the entire system.
+- **Scalability**: Ensure that the system can scale seamlessly by adding more agents and handling increased communication loads effectively.
+- **Interoperability**: Design for interoperability so that agents can interact with various platforms and legacy systems, enhancing their utility across different environments.
+
+## Implementation Strategies
+
+- **Define Clear Roles**: Assign specific roles to each agent to ensure specialization and efficiency in task execution. This approach leverages the strengths of each agent, allowing them to focus on particular tasks.
+- **Utilize Robust Communication Protocols**: Establish secure and efficient communication protocols to facilitate information exchange and coordination among agents. This is crucial for maintaining system integrity and performance.
+- **Start Simple and Iterate**: Begin with a simple setup of one or two agents and gradually introduce complexity. This approach helps in validating core designs and interaction patterns before scaling up.
+
+## Task Decomposition and Collaboration
+
+- **Task Decomposition**: Break down complex tasks into manageable subtasks that can be handled by specialized agents. This not only simplifies problem-solving but also allows for parallel execution, improving efficiency.
+- **Collaborative Intelligence**: Encourage collaboration among agents to achieve results beyond the capabilities of individual agents. This is particularly useful for complex problems requiring diverse expertise.
+
+For modularity, we want to pass state between nodes in LangGraph as much as possible to set the right context for the agents.
+
+Here is the langgraph documentation: https://langchain-ai.github.io/langgraph/tutorials/introduction/
+
+We are using the latest version of Claude 3-5 Sonnet for all the agents: claude-3-5-sonnet-2041022.
+
+For internet search, use DuckDuckGo to get the information we need. Use Firecrawl to scrape websites.
+
+Firecrawl can scrape both the text of a website and take screenshots. Decide which one to use based on the task.
+
+Here is the Firecrawl documentation: https://docs.firecrawl.dev/sdks/python
+
+For passing screenshots taken by Firecrawl to the Claude agents, use the following code:
+
+````"messages": [
+    HumanMessage(content=[
+        {"type": "text", "text": "<custom prompt for the agent specific to the task>"},
+        {"type": "image_url", "image_url": {"url": f"data:image/{screenshot_image_format};base64,{screenshot_data}"}},
+    ])
+],```
+
+Where screenshot_image_format and screenshot_data are the format and data of the screenshot (this is .png format for Firecrawl screenshots).
+
+Use the context in the nodes in the prompts you write for the agents.
+
+If you need to use a library that is not in the requirements.txt file, ask the user if you are allowed to install it.
+````
